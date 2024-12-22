@@ -13,6 +13,11 @@ enum MyTypeAlias { case myTypeAlias(String) }
 @Newtype(NoConformances)
 enum ConformToNothing { case foo(String) }
 
+@Newtype
+@dynamicMemberLookup
+enum DefaultConformance { case defaultConformance(String) }
+
+
 let foo = MyTypeAlias("foo")
 if case let .myTypeAlias(foo) = foo {
     print(foo)

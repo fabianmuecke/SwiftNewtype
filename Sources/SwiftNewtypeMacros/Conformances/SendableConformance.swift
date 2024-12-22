@@ -26,7 +26,7 @@ struct SendableConformance: Conformance {
         modifiers: DeclModifierListSyntax
     ) throws -> ExtensionDeclSyntax {
         try ExtensionDeclSyntax(
-            "extension \(type.trimmed): @unchecked Sendable {}"
+            "extension \(type.trimmed): Sendable {}"
         )
     }
 }

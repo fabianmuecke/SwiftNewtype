@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  ExpressibleByUnicodeScalarLiteral.swift
+//  SwiftNewtype
 //
-//
-//  Created by Fabian Mücke on 08.05.24.
+//  Created by Fabian Mücke on 22.12.24.
 //
 
 import Foundation
@@ -17,8 +17,8 @@ struct ExpressibleByUnicodeScalarLiteralConformance: Conformance {
         modifiers: DeclModifierListSyntax
     ) -> MemberBlockSyntax {
         """
-        \(modifiers)init(unicodeScalarLiteral value: String) {
-            self.init(\(valueType)(unicodeScalarLiteral: value))
+        \(modifiers)init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
+            self.init(\(valueType)(unicodeScalarLiteral: unicodeScalarLiteral))
         }
         """
     }

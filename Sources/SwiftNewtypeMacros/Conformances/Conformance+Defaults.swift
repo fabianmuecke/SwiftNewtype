@@ -8,7 +8,7 @@
 import Foundation
 
 let defaultConformances: [String: [any Conformance]] = [
-    "String": [EquatableConformance(), HashableConformance(), CodableConformance(), ExpressibleByStringLiteralConformance(),
+    "String": [EquatableConformance(), HashableConformance(), CodableConformance(),                ExpressibleByUnicodeScalarLiteralConformance(), ExpressibleByExtendedGraphemeClusterLiteralConformance(), ExpressibleByStringLiteralConformance(),
                ExpressibleByStringInterpolationConformance(), SendableConformance()],
     "Int": integerConformances,
     "Int32": integerConformances,
@@ -20,7 +20,7 @@ let defaultConformances: [String: [any Conformance]] = [
     "Date": [EquatableConformance(), HashableConformance(), ComparableConformance(), CodableConformance(), SendableConformance()],
     "Float": floatConformances,
     "Double": floatConformances,
-    "UUID": [EquatableConformance(), HashableConformance(), CodableConformance(), SendableConformance()]
+    "UUID": [EquatableConformance(), HashableConformance(), CodableConformance(), SendableConformance()],
 ]
 
 let integerConformances: [any Conformance] = [
@@ -29,7 +29,7 @@ let integerConformances: [any Conformance] = [
     ComparableConformance(),
     CodableConformance(),
     ExpressibleByIntegerLiteralConformance(),
-    SendableConformance()
+    SendableConformance(),
 ]
 let floatConformances: [any Conformance] = [
     EquatableConformance(),
@@ -37,5 +37,5 @@ let floatConformances: [any Conformance] = [
     ComparableConformance(),
     CodableConformance(),
     ExpressibleByFloatLiteralConformance(),
-    SendableConformance()
+    SendableConformance(),
 ]
