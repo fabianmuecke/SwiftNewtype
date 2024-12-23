@@ -14,6 +14,8 @@ public protocol Newtype {
     /// The wrapped value type.
     associatedtype Value
     
+    var value: Value { get }
+    
     /// Initializes a new instance of the ``Newtype``.
     init(_ value: Value)
 }
