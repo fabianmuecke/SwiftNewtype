@@ -1,5 +1,5 @@
 # SwiftNewtype
-Inspired by [Haskell's Newtype](https://wiki.haskell.org/Newtype) this project brings compiletime safety for typealiases, leveraging wrapper types and providing default implementations for common protocols to these by generating the necessary code via a Swift macro.
+Inspired by [Haskell's Newtype](https://wiki.haskell.org/Newtype) this project brings compile-time safety for typealiases, leveraging wrapper types and providing default implementations for common protocols to these by generating the necessary code via a Swift macro.
 
 ## Why use Newtypes?
 
@@ -19,7 +19,7 @@ let addressIds: [UserId] = array.map { $0.1 }
 
 While this example is obviously easy and you'd of course never do that, in a large code base this will eventually happen, especially, if dealing with nested lists or dictionaries or closures / callbacks, where the parameter list (or return value) changes over time. The compiler will not help you, if you're refactoring a larger codebase. You're bound to miss some spots.
 
-This is where the concept of compiletime safe typewrappers (or [Newtype](https://wiki.haskell.org/Newtype), as they're called in Haskell) comes to the rescue.
+This is where the concept of compile-time safe type wrappers (or [Newtype](https://wiki.haskell.org/Newtype), as they're called in Haskell) comes to the rescue.
 
 Doing this:
 ```swift
@@ -42,7 +42,7 @@ dependencies: [
 To add SwiftNewtype as a dependency of your Xcode project, go to the Package Dependencies tab of your Xcode project, click the plus button and search for https://github.com/fabianmuecke/SwiftNewtype.git.
 
 ## Usage
-Declare your compiletime safe wrapper types like this:
+Declare your compile-time safe wrapper types like this:
 ```swift
 import SwiftNewtype
 
@@ -97,7 +97,7 @@ enum UserId: DatabaseValueConvertible { case userId(Int) }
 ### Structs
 "But I don't like enums. Can't I just use structs?"
 
-Sure. I designed this to use an `enum` instead of a struct, because that allows to use pattern matching for unwrapping the value and still getting some help from the compiler, plus better readability by providing a useful name for the `case`, but if you prefer to have a `struct` for the simplicity of it, use it likes this:
+Sure. I designed this to use an `enum` instead of a struct, because that allows to use pattern matching for unwrapping the value and still getting some help from the compiler, plus better readability by providing a useful name for the `case`, but if you prefer to have a `struct` for the simplicity of it, use it like this:
 ```swift
 @Newtype(Int)
 public struct UserId {}
