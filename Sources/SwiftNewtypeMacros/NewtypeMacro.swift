@@ -14,6 +14,15 @@ public struct NewtypeMacro: MemberMacro, ExtensionMacro {
     struct Error: Swift.Error {
         let message: String
     }
+    
+    public static func expansion(
+        of node: AttributeSyntax,
+        providingMembersOf declaration: some DeclGroupSyntax,
+        conformingTo _: [TypeSyntax],
+        in context: some MacroExpansionContext
+    ) throws -> [DeclSyntax] {
+        try expansion(of: node, providingMembersOf: declaration, in: context)
+    }
 
     public static func expansion(
         of node: AttributeSyntax,
@@ -35,7 +44,7 @@ public struct NewtypeMacro: MemberMacro, ExtensionMacro {
         of attribute: AttributeSyntax,
         attachedTo declaration: some DeclGroupSyntax,
         providingExtensionsOf type: some TypeSyntaxProtocol,
-        conformingTo protocols: [TypeSyntax],
+        conformingTo _: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
         if let enumDecl = declaration.as(EnumDeclSyntax.self) {
