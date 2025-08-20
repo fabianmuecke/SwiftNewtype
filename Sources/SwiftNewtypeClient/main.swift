@@ -6,11 +6,11 @@ import SwiftNewtype
 let a = 17
 let b = 25
 
-@Newtype(Equatable, Hashable, Codable, Comparable)
+@Newtype(Equatable.self, Hashable.self, Codable.self, Comparable.self)
 @dynamicMemberLookup
 enum MyTypeAlias { case myTypeAlias(String) }
 
-@Newtype(NoConformances)
+@Newtype(NoConformances.self)
 enum ConformToNothing { case foo(String) }
 
 @Newtype
@@ -27,4 +27,6 @@ print(String(decoding: try JSONEncoder().encode(MyTypeAlias("bar")), as: UTF8.se
 print(foo.utf8)
 print(foo == MyTypeAlias("bar"))
 print(foo == .myTypeAlias("foo"))
-print(foo < .myTypeAlias("foo"))
+
+// comparable conformance for NewType wrapping String values is not working at this time.
+//print(foo < .myTypeAlias("foo"))

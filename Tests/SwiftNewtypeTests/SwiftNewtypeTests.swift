@@ -31,7 +31,8 @@ final class MacrosTests: XCTestCase {
             
                 public subscript <T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
                     value[keyPath: keyPath]
-                }}
+                }
+            }
 
             extension MyTypeAlias {
                 public init(_ value: String) {
@@ -76,7 +77,19 @@ final class MacrosTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
             }
-
+            
+            extension MyTypeAlias: ExpressibleByUnicodeScalarLiteral {
+                public init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
+                    self.init(String(unicodeScalarLiteral: unicodeScalarLiteral))
+                }
+            }
+            
+            extension MyTypeAlias: ExpressibleByExtendedGraphemeClusterLiteral {
+                public init(extendedGraphemeClusterLiteral value: String) {
+                    self.init(String(extendedGraphemeClusterLiteral: value))
+                }
+            }
+            
             extension MyTypeAlias: ExpressibleByStringLiteral {
                 public init(stringLiteral value: String) {
                     self.init(String(stringLiteral: value))
@@ -89,7 +102,7 @@ final class MacrosTests: XCTestCase {
                 }
             }
 
-            extension MyTypeAlias: @unchecked Sendable {
+            extension MyTypeAlias: Sendable {
             }
             """, 
             macros: testMacros
@@ -106,7 +119,8 @@ final class MacrosTests: XCTestCase {
 
                 subscript <T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
                     value[keyPath: keyPath]
-                }}
+                }
+            }
 
             extension MyTypeAlias {
                 var value: String {
@@ -147,7 +161,8 @@ final class MacrosTests: XCTestCase {
 
                 public subscript <T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
                     value[keyPath: keyPath]
-                }}
+                }
+            }
 
             extension MyTypeAlias {
                 public var value: String {
@@ -199,7 +214,19 @@ final class MacrosTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
             }
-
+            
+            extension MyTypeAlias: ExpressibleByUnicodeScalarLiteral {
+                public init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
+                    self.init(String(unicodeScalarLiteral: unicodeScalarLiteral))
+                }
+            }
+            
+            extension MyTypeAlias: ExpressibleByExtendedGraphemeClusterLiteral {
+                public init(extendedGraphemeClusterLiteral value: String) {
+                    self.init(String(extendedGraphemeClusterLiteral: value))
+                }
+            }
+            
             extension MyTypeAlias: ExpressibleByStringLiteral {
                 public init(stringLiteral value: String) {
                     self.init(String(stringLiteral: value))
@@ -212,7 +239,7 @@ final class MacrosTests: XCTestCase {
                 }
             }
 
-            extension MyTypeAlias: @unchecked Sendable {
+            extension MyTypeAlias: Sendable {
             }
             """,
             macros: testMacros
@@ -228,7 +255,8 @@ final class MacrosTests: XCTestCase {
 
                 subscript <T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
                     value[keyPath: keyPath]
-                }}
+                }
+            }
 
             extension MyTypeAlias {
                 var value: String {
@@ -280,7 +308,19 @@ final class MacrosTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
             }
-
+            
+            extension MyTypeAlias: ExpressibleByUnicodeScalarLiteral {
+                init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
+                    self.init(String(unicodeScalarLiteral: unicodeScalarLiteral))
+                }
+            }
+            
+            extension MyTypeAlias: ExpressibleByExtendedGraphemeClusterLiteral {
+                init(extendedGraphemeClusterLiteral value: String) {
+                    self.init(String(extendedGraphemeClusterLiteral: value))
+                }
+            }
+            
             extension MyTypeAlias: ExpressibleByStringLiteral {
                 init(stringLiteral value: String) {
                     self.init(String(stringLiteral: value))
@@ -293,7 +333,7 @@ final class MacrosTests: XCTestCase {
                 }
             }
 
-            extension MyTypeAlias: @unchecked Sendable {
+            extension MyTypeAlias: Sendable {
             }
             """,
             macros: testMacros
@@ -305,7 +345,8 @@ final class MacrosTests: XCTestCase {
 
                 public subscript <T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
                     value[keyPath: keyPath]
-                }}
+                }
+            }
 
             extension URLTypeAlias {
                 public var value: String {
@@ -366,7 +407,19 @@ final class MacrosTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
             }
-
+            
+            extension URLTypeAlias: ExpressibleByUnicodeScalarLiteral {
+                public init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
+                    self.init(String(unicodeScalarLiteral: unicodeScalarLiteral))
+                }
+            }
+            
+            extension URLTypeAlias: ExpressibleByExtendedGraphemeClusterLiteral {
+                public init(extendedGraphemeClusterLiteral value: String) {
+                    self.init(String(extendedGraphemeClusterLiteral: value))
+                }
+            }
+            
             extension URLTypeAlias: ExpressibleByStringLiteral {
                 public init(stringLiteral value: String) {
                     self.init(String(stringLiteral: value))
@@ -379,7 +432,7 @@ final class MacrosTests: XCTestCase {
                 }
             }
 
-            extension URLTypeAlias: @unchecked Sendable {
+            extension URLTypeAlias: Sendable {
             }
             """,
             macros: testMacros
@@ -484,7 +537,7 @@ final class MacrosTests: XCTestCase {
             to: "Sendable",
             expandsTo:
             """
-            extension URLTypeAlias: @unchecked Sendable {
+            extension URLTypeAlias: Sendable {
             }
             """
         )
@@ -513,7 +566,7 @@ final class MacrosTests: XCTestCase {
                 }
 
                 public func advanced(by n: Stride) -> Self {
-                    Self (value.advanced(by: n))
+                    Self(value.advanced(by: n))
                 }
             }
             """
@@ -596,8 +649,8 @@ final class MacrosTests: XCTestCase {
             expandsTo:
             """
             extension URLTypeAlias: ExpressibleByUnicodeScalarLiteral {
-                public init(unicodeScalarLiteral value: String) {
-                    self.init(String(unicodeScalarLiteral: value))
+                public init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
+                    self.init(String(unicodeScalarLiteral: unicodeScalarLiteral))
                 }
             }
             """
@@ -626,7 +679,8 @@ final class MacrosTests: XCTestCase {
 
                 subscript <T>(dynamicMember keyPath: KeyPath<URL, T>) -> T {
                     value[keyPath: keyPath]
-                }}
+                }
+            }
 
             extension MyTypeAlias {
                 var value: URL {
@@ -679,7 +733,7 @@ final class MacrosTests: XCTestCase {
                     }
             }
 
-            extension MyTypeAlias: @unchecked Sendable {
+            extension MyTypeAlias: Sendable {
             }
             """,
             macros: testMacros
