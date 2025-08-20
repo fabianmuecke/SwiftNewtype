@@ -28,5 +28,5 @@ print(foo.utf8)
 print(foo == MyTypeAlias("bar"))
 print(foo == .myTypeAlias("foo"))
 
-// comparable conformance for NewType wrapping Stringv values is not working at this time.
+// comparable conformance for NewType wrapping String values is not working at this time.
 //print(foo < .myTypeAlias("foo"))
