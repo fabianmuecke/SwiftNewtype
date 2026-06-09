@@ -17,7 +17,7 @@ struct ComparableConformance: Conformance {
         modifiers: DeclModifierListSyntax
     ) -> MemberBlockSyntax {
         """
-        static func < (lhs: Self, rhs: Self) -> Bool {
+        \(modifiers)static func < (lhs: Self, rhs: Self) -> Bool {
             lhs.value < rhs.value
         }
         """

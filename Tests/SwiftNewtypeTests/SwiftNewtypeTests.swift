@@ -667,6 +667,18 @@ final class MacrosTests: XCTestCase {
             }
             """
         )
+        
+        assertConformance(
+            to: "Comparable",
+            expandsTo:
+            """
+            extension URLTypeAlias: Comparable {
+                public static func < (lhs: Self, rhs: Self) -> Bool {
+                    lhs.value < rhs.value
+                }
+            }
+            """
+        )
 
         assertMacroExpansion(
             """
